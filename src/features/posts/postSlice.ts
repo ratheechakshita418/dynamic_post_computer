@@ -8,34 +8,27 @@ const initialState: PostState = {
 
 const postSlice = createSlice({
   name: "posts",
-
   initialState,
-
   reducers: {
-    // Update the text inside the textarea
-    updatePost(state, action: PayloadAction<string>) {
+    updatePost: (state, action: PayloadAction<string>) => {
       state.currentPost = action.payload;
     },
 
-    // Save a post
-    addPost(state, action: PayloadAction<Post>) {
+    addPost: (state, action: PayloadAction<Post>) => {
       state.posts.push(action.payload);
     },
 
-    // Delete a post
-    deletePost(state, action: PayloadAction<number>) {
+    deletePost: (state, action: PayloadAction<number>) => {
       state.posts = state.posts.filter(
         (post) => post.id !== action.payload
       );
     },
 
-    // Clear textarea
-    clearCurrentPost(state) {
+    clearCurrentPost: (state) => {
       state.currentPost = "";
     },
 
-    // Remove all posts
-    clearPosts(state) {
+    clearPosts: (state) => {
       state.posts = [];
     },
   },
