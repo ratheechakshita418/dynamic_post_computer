@@ -1,17 +1,18 @@
-import { Platform } from "../types/Platform";
 import "../styles/CharacterCounter.css";
 
-interface Props {
-  post: string;
-  selectedPlatforms: string[];
-  platforms: Platform[];
-}
+import { platforms } from "../data/platforms";
 
-const CharacterCounter = ({
-  post,
-  selectedPlatforms,
-  platforms,
-}: Props) => {
+import { useAppSelector } from "../hooks/reduxHooks";
+
+const CharacterCounter = () => {
+  const post = useAppSelector(
+    (state) => state.posts.currentPost
+  );
+
+  const selectedPlatforms = useAppSelector(
+    (state) => state.platforms.selectedPlatforms
+  );
+
   return (
     <div className="character-counter">
       <h2>Character Count</h2>
