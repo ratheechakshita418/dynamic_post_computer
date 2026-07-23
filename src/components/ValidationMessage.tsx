@@ -1,17 +1,18 @@
-import { Platform } from "../types/Platform";
 import "../styles/ValidationMessage.css";
 
-interface Props {
-  post: string;
-  selectedPlatforms: string[];
-  platforms: Platform[];
-}
+import { platforms } from "../data/platforms";
 
-const ValidationMessage = ({
-  post,
-  selectedPlatforms,
-  platforms,
-}: Props) => {
+import { useAppSelector } from "../hooks/reduxHooks";
+
+const ValidationMessage = () => {
+  const post = useAppSelector(
+    (state) => state.posts.currentPost
+  );
+
+  const selectedPlatforms = useAppSelector(
+    (state) => state.platforms.selectedPlatforms
+  );
+
   return (
     <div className="validation-box">
       <h2>Validation</h2>
