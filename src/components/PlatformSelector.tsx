@@ -1,17 +1,18 @@
-import { Platform } from "../types/Platform";
 import "../styles/PlatformSelector.css";
 
-interface Props {
-  platforms: Platform[];
-  selectedPlatforms: string[];
-  onToggle: (id: string) => void;
-}
+import { platforms } from "../data/platforms";
 
-const PlatformSelector = ({
-  platforms,
-  selectedPlatforms,
-  onToggle,
-}: Props) => {
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
+
+import { togglePlatform } from "../features/platforms/platformSlice";
+
+const PlatformSelector = () => {
+  const dispatch = useAppDispatch();
+
+  const selectedPlatforms = useAppSelector(
+    (state) => state.platforms.selectedPlatforms
+  );
+
   return (
     <div className="platform-selector">
       <h2>Select Platforms</h2>
@@ -21,7 +22,7 @@ const PlatformSelector = ({
           <input
             type="checkbox"
             checked={selectedPlatforms.includes(platform.id)}
-            onChange={() => onToggle(platform.id)}
+            onChange={() => dispatch(togglePlatform(platform.id))}
           />
 
           {platform.name}
