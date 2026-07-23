@@ -7,11 +7,9 @@ const initialState: PlatformState = {
 
 const platformSlice = createSlice({
   name: "platforms",
-
   initialState,
-
   reducers: {
-    togglePlatform(state, action: PayloadAction<string>) {
+    togglePlatform: (state, action: PayloadAction<string>) => {
       const platform = action.payload;
 
       if (state.selectedPlatforms.includes(platform)) {
@@ -23,15 +21,13 @@ const platformSlice = createSlice({
       }
     },
 
-    clearPlatforms(state) {
+    clearPlatforms: (state) => {
       state.selectedPlatforms = [];
     },
   },
 });
 
-export const {
-  togglePlatform,
-  clearPlatforms,
-} = platformSlice.actions;
+export const { togglePlatform, clearPlatforms } =
+  platformSlice.actions;
 
 export default platformSlice.reducer;
